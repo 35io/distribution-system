@@ -32,14 +32,14 @@ public class BookController {
 
         if (okOfAccount && okOfStock) {
             Boolean ok1 = commitOrRollback(transaction.getId(), "http://localhost:8081/stock/commit");
-            Boolean ok2 = commitOrRollback(transaction.getId(), "http://localhost:8081/account/commit");
+            Boolean ok2 = commitOrRollback(transaction.getId(), "http://localhost:8082/account/commit");
             if (ok1 && ok2) {
                 bookTransactionService.finishTx(transaction.getId(), TransactionStatus.SUCCESS);
             }
         } else {
             bookTransactionService.finishTx(transaction.getId(), TransactionStatus.FAIL);
             commitOrRollback(transaction.getId(), "http://localhost:8081/stock/rollback");
-            commitOrRollback(transaction.getId(), "http://localhost:8081/account/rollback");
+            commitOrRollback(transaction.getId(), "http://localhost:8082/account/rollback");
         }
         return "success";
     }
