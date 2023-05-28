@@ -1,4 +1,4 @@
-package io.github.tc.model;
+package io.github.account.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -7,14 +7,19 @@ import lombok.Setter;
 
 import java.util.Date;
 
+/**
+ * 库存
+ */
 @Entity
 @Getter
 @Setter
-public class BookTransaction {
+public class BookStock {
     @Id
     private String id;
 
-    private TransactionStatus status;
+    private String name;
+
+    private Integer num;
 
     private Date createdDate;
 }

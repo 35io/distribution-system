@@ -1,2 +1,4 @@
 rootProject.name = 'twophase'
 include ':tc'
+include ':stock'
+include ':account'
