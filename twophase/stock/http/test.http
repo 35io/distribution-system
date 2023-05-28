@@ -1,8 +1,0 @@
-### 新增或编辑文件
-POST {{host}}/stock
-#Authorization: {{token}}
-Content-Type: application/json
-
-{
-
-}

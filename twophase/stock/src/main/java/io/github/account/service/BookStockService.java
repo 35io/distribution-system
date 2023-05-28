@@ -48,4 +48,17 @@ public class BookStockService {
             return false;
         }
     }
+
+    public boolean rollback(String transactionId) {
+        TransactionStatus exist = pools.get(transactionId);
+        if (exist == null) {
+            return false;
+        }
+        try {
+            transactionManager.rollback(exist);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
 }

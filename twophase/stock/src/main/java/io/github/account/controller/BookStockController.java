@@ -19,4 +19,9 @@ public class BookStockController {
     public boolean commit(String transactionId) {
         return bookStockService.commit(transactionId);
     }
+
+    @PostMapping("/stock/rollback")
+    public boolean rollback(String transactionId) {
+        return bookStockService.rollback(transactionId);
+    }
 }

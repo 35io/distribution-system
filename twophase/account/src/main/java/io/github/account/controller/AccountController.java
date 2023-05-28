@@ -21,4 +21,9 @@ public class AccountController {
     public boolean commit(String transactionId) {
         return accountService.commit(transactionId);
     }
+
+    @PostMapping("/account/rollback")
+    public boolean rollback(String transactionId) {
+        return accountService.rollback(transactionId);
+    }
 }
