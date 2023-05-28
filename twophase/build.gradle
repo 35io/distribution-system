@@ -1,0 +1,21 @@
+plugins {
+	id 'java'
+	id 'org.springframework.boot' version '3.1.0'
+	id 'io.spring.dependency-management' version '1.1.0'
+}
+
+group = 'io.github.twophase'
+sourceCompatibility = '17'
+
+allprojects {
+
+	repositories {
+		mavenCentral()
+	}
+}
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
