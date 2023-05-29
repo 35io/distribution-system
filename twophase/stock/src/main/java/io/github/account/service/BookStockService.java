@@ -9,6 +9,7 @@ import org.springframework.transaction.TransactionStatus;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 
 @Service
 @AllArgsConstructor
@@ -18,7 +19,10 @@ public class BookStockService {
     private static final Map<String, TransactionStatus> pools = new HashMap<>();
 
     public BookStock show(Integer bookId) {
-        return bookStockRepository.findById(bookId).orElseThrow();
+        TransactionStatus transaction = transactionManager.getTransaction(null);
+        Optional<BookStock> result = bookStockRepository.findById(bookId);
+        transactionManager.commit(transaction);
+        return result.orElseThrow();
     }
 
     public boolean deduct(Integer bookId, Integer num, String transactionId) {

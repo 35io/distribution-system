@@ -60,7 +60,7 @@ public class BookController {
     }
 
     private BookStock fetchStock(Integer stockId) {
-        BookStock result = restTemplate.getForObject("http://localhost:8081/stock?stockId=" + stockId, BookStock.class);
+        BookStock result = restTemplate.getForObject("http://localhost:8081/stock?bookId=" + stockId, BookStock.class);
         return result;
     }
 

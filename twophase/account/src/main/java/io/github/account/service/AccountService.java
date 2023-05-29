@@ -72,6 +72,9 @@ public class AccountService {
     }
 
     public Account show(Integer accountId) {
-        return accountRepository.findById(accountId).orElseThrow();
+        TransactionStatus transaction = transactionManager.getTransaction(null);
+        Optional<Account> result = accountRepository.findById(accountId);
+        transactionManager.commit(transaction);
+        return result.orElseThrow();
     }
 }
