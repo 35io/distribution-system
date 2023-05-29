@@ -1,6 +1,11 @@
-### 新增或编辑文件
+###
 POST {{host}}/book
 #Authorization: {{token}}
 Content-Type: application/x-www-form-urlencoded
 
 accountId=1&bookId=1&num=1
+
+###
+GET {{host}}/status?accountId=1&bookId=1
+#Authorization: {{token}}
+Content-Type: application/x-www-form-urlencoded

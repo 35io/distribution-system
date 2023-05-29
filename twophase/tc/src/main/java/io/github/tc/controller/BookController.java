@@ -1,5 +1,7 @@
 package io.github.tc.controller;
 
+import io.github.tc.model.Account;
+import io.github.tc.model.BookStock;
 import io.github.tc.model.BookTransaction;
 import io.github.tc.model.TransactionStatus;
 import io.github.tc.service.BookTransactionService;
@@ -9,11 +11,13 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 @RestController
 @AllArgsConstructor
@@ -42,6 +46,26 @@ public class BookController {
             commitOrRollback(transaction.getId(), "http://localhost:8082/account/rollback");
         }
         return "success";
+    }
+
+    /**
+     * 查看账户、库存状态
+     */
+    @GetMapping("/status")
+    public List<Object> book(Integer accountId, Integer bookId) {
+        Account account = fetchAccount(accountId);
+        BookStock stock = fetchStock(bookId);
+        return List.of(account, stock);
+    }
+
+    private BookStock fetchStock(Integer stockId) {
+        BookStock result = restTemplate.getForObject("http://localhost:8081/stock?stockId=" + stockId, BookStock.class);
+        return result;
+    }
+
+    private Account fetchAccount(Integer accountId) {
+        Account result = restTemplate.getForObject("http://localhost:8082/account?accountId=" + accountId, Account.class);
+        return result;
     }
 
     private Boolean sendMsg2Stock(Integer bookId, Integer num, String id) {

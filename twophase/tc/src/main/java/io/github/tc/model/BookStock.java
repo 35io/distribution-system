@@ -1,7 +1,5 @@
-package io.github.account.model;
+package io.github.tc.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -10,12 +8,10 @@ import java.util.Date;
 /**
  * 库存
  */
-@Entity
 @Getter
 @Setter
 public class BookStock {
-    @Id
-    private Integer id;
+    private String id;
 
     private String name;
 

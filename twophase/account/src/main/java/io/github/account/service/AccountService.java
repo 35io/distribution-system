@@ -70,4 +70,8 @@ public class AccountService {
             return false;
         }
     }
+
+    public Account show(Integer accountId) {
+        return accountRepository.findById(accountId).orElseThrow();
+    }
 }

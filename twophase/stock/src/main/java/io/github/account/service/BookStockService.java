@@ -1,6 +1,7 @@
 package io.github.account.service;
 
 import io.github.account.dao.BookStockRepository;
+import io.github.account.model.BookStock;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.PlatformTransactionManager;
@@ -15,6 +16,10 @@ public class BookStockService {
     private BookStockRepository bookStockRepository;
     private PlatformTransactionManager transactionManager;
     private static final Map<String, TransactionStatus> pools = new HashMap<>();
+
+    public BookStock show(Integer bookId) {
+        return bookStockRepository.findById(bookId).orElseThrow();
+    }
 
     public boolean deduct(Integer bookId, Integer num, String transactionId) {
         TransactionStatus exist = pools.get(transactionId);

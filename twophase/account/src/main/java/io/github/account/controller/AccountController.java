@@ -1,7 +1,9 @@
 package io.github.account.controller;
 
+import io.github.account.model.Account;
 import io.github.account.service.AccountService;
 import lombok.AllArgsConstructor;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -15,6 +17,11 @@ public class AccountController {
     @PostMapping("/account/prepare")
     public boolean prepare(Integer accountId, BigDecimal money, String transactionId) {
         return accountService.deduct(accountId, money, transactionId);
+    }
+
+    @GetMapping("/account")
+    public Account prepare(Integer accountId) {
+        return accountService.show(accountId);
     }
 
     @PostMapping("/account/commit")
