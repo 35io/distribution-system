@@ -15,8 +15,8 @@ public class AccountController {
     private AccountService accountService;
 
     @PostMapping("/account/prepare")
-    public boolean prepare(Integer accountId, BigDecimal money, String transactionId) {
-        return accountService.deduct(accountId, money, transactionId);
+    public boolean prepare(Integer accountId, BigDecimal amount, String transactionId) {
+        return accountService.deduct(accountId, amount, transactionId);
     }
 
     @GetMapping("/account")
